@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a0ce279-e6b0-489a-957d-63a824aaceb0" name="Changes" comment="init project">
-      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/components/Map.tsx" afterDir="false" />
+    <list default="true" id="2a0ce279-e6b0-489a-957d-63a824aaceb0" name="Changes" comment="add map">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/globals.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/components/Map.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/components/Map.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +24,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "TatyanaYarusova"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/TatyanaYarusova/Software-model-of-logistics-support.git",
+    "accountId": "4a084be5-c32d-4d95-ba23-c927d889c0af"
+  }
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -96,8 +105,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.dev" />
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>
@@ -116,7 +125,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1742486665938</updated>
-      <workItem from="1742486667264" duration="6007000" />
+      <workItem from="1742486667264" duration="6582000" />
+      <workItem from="1743444371687" duration="4016000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <option name="closed" value="true" />
@@ -126,7 +136,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742490311921</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add map">
+      <option name="closed" value="true" />
+      <created>1742492913868</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1742492913868</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +163,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init project" />
-    <option name="LAST_COMMIT_MESSAGE" value="init project" />
+    <MESSAGE value="add map" />
+    <option name="LAST_COMMIT_MESSAGE" value="add map" />
   </component>
 </project>
