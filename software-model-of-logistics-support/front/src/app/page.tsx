@@ -2,9 +2,12 @@
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 const Map = dynamic(() => import("@/components/Map"), { ssr: false });
 
 export default function MainPage() {
+    const router = useRouter();
+
     const [start, setStart] = useState(null);
     const [end, setEnd] = useState(null);
     const [waypoints, setWaypoints] = useState([]);
@@ -39,7 +42,7 @@ export default function MainPage() {
             <div className="w-full bg-gray-300 p-4 flex justify-between border-b">
                 <div className="flex space-x-4">
                     <button className="font-semibold">Главная</button>
-                    <button className="font-semibold">Склады</button>
+                    <button className="font-semibold" onClick={() => router.push("/dashboard")}>Дашбоард</button>
                 </div>
             </div>
             <div className="flex flex-grow">

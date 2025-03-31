@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a0ce279-e6b0-489a-957d-63a824aaceb0" name="Changes" comment="add map">
+    <list default="true" id="2a0ce279-e6b0-489a-957d-63a824aaceb0" name="Changes" comment="add params">
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/dashboard/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/components/Dashboard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/components/Map.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/components/Map.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +127,7 @@
       <option name="presentableId" value="Default" />
       <updated>1742486665938</updated>
       <workItem from="1742486667264" duration="6582000" />
-      <workItem from="1743444371687" duration="4016000" />
+      <workItem from="1743444371687" duration="5983000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <option name="closed" value="true" />
@@ -144,7 +145,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742492913868</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add params">
+      <option name="closed" value="true" />
+      <created>1743449396620</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1743449396620</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,6 +173,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init project" />
     <MESSAGE value="add map" />
-    <option name="LAST_COMMIT_MESSAGE" value="add map" />
+    <MESSAGE value="add params" />
+    <option name="LAST_COMMIT_MESSAGE" value="add params" />
   </component>
 </project>
