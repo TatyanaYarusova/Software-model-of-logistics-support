@@ -5,18 +5,17 @@ import {
     MapContainer,
     TileLayer,
     Marker,
+    Polyline,
     useMapEvents,
     useMap,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
-// Картинки для иконок
 import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
 import iconUrl from "leaflet/dist/images/marker-icon.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
 
-// Привязываем кастомные иконки
 L.Icon.Default.mergeOptions({
     iconRetinaUrl: iconRetina.src,
     iconUrl: iconUrl.src,
@@ -30,9 +29,18 @@ interface MapProps {
     onStartChange: (val: [number, number]) => void;
     onEndChange: (val: [number, number]) => void;
     onWaypointChange: (val: [number, number][]) => void;
+    routePolyline: [number, number][];
 }
 
-const Map = ({ start, end, waypoints, onStartChange, onEndChange, onWaypointChange }: MapProps) => {
+export default function Map({
+                                start,
+                                end,
+                                waypoints,
+                                onStartChange,
+                                onEndChange,
+                                onWaypointChange,
+                                routePolyline,
+                            }: MapProps) {
     const [localStart, setLocalStart] = useState(start);
     const [localEnd, setLocalEnd] = useState(end);
     const [localWaypoints, setLocalWaypoints] = useState(waypoints);
@@ -76,18 +84,18 @@ const Map = ({ start, end, waypoints, onStartChange, onEndChange, onWaypointChan
             center={[55.7422, 37.5719]}
             zoom={13}
             style={{ width: "100%", height: "100%" }}
-            className="z-0"
         >
             <ResizeMap />
             <ClickHandler />
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {localStart && <Marker position={localStart} />}
             {localEnd && <Marker position={localEnd} />}
-            {localWaypoints.map((point, idx) => (
-                <Marker key={idx} position={point} />
+            {localWaypoints.map((pt, idx) => (
+                <Marker key={idx} position={pt} />
             ))}
+            {routePolyline.length > 1 && (
+                <Polyline positions={routePolyline} />
+            )}
         </MapContainer>
     );
-};
-
-export default Map;
+}
