@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a0ce279-e6b0-489a-957d-63a824aaceb0" name="Changes" comment="refactoring">
-      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/api/optimize/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/util/routeOptimizer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/data/stats.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/api/stats/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/api/simulate/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/api/simulate/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/components/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/components/Dashboard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/components/Map.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/components/Map.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/util/routeOptimizer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/util/routeOptimizer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +60,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "optimize",
+    "git-widget-placeholder": "statistics",
     "js.last.introduce.type": "LET",
     "last_opened_file_path": "D:/4_course/Диплом",
     "node.js.detected.package.eslint": "true",
@@ -116,6 +118,8 @@
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>

@@ -1,0 +1,174 @@
+[
+  {
+    "timestamp": "2025-05-02T13:09:21.031Z",
+    "params": {
+      "speed": 1,
+      "attackRisk": 1,
+      "warehouseLoss": 1,
+      "consumptionRate": 0,
+      "experimentsCount": 10,
+      "product": 1
+    },
+    "routeSummary": [
+      "WH",
+      "WP0",
+      "END",
+      "WP1",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 3.45,
+      "rawDelivered": 1,
+      "rawLostWarehouse": 0,
+      "rawLostTransit": 0,
+      "rawConsumed": 0,
+      "avgTime": 3.45,
+      "avgDelivered": 1,
+      "avgLostWarehouse": 0,
+      "avgLostTransit": 0,
+      "avgConsumed": 0,
+      "events": [
+        "#1: time=3.45, del=1, whLost=0, trLost=0, cons=0"
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-05-02T13:12:59.072Z",
+    "params": {
+      "speed": 1,
+      "attackRisk": 1,
+      "warehouseLoss": 1,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 1,
+      "vehicleCount": 1,
+      "vehicleCap": 1
+    },
+    "routeSummary": [
+      "WH",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 2.51,
+      "rawDelivered": 1,
+      "rawLostWarehouse": 0,
+      "rawLostTransit": 0,
+      "rawConsumed": 2.51,
+      "avgTime": 2.51,
+      "avgDelivered": 1,
+      "avgLostWarehouse": 0,
+      "avgLostTransit": 0,
+      "avgConsumed": 2.51,
+      "events": [
+        "#1: time=2.51, del=1, whLost=0, trLost=0, cons=2.51"
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-05-02T13:21:25.827Z",
+    "params": {
+      "speed": 1,
+      "attackRisk": 100,
+      "warehouseLoss": 100,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 1,
+      "vehicleCount": 1,
+      "vehicleCap": 1
+    },
+    "routeSummary": [
+      "WH",
+      "WP0",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 2.76,
+      "rawDelivered": 0,
+      "rawLostWarehouse": 1,
+      "rawLostTransit": 0,
+      "rawConsumed": 2.76,
+      "avgTime": 2.76,
+      "avgDelivered": 0,
+      "avgLostWarehouse": 1,
+      "avgLostTransit": 0,
+      "avgConsumed": 2.76,
+      "events": [
+        "#1: time=2.76, del=0, whLost=1, trLost=0, cons=2.76"
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-05-02T15:03:31.893Z",
+    "params": {
+      "speed": 13,
+      "attackRisk": 100,
+      "warehouseLoss": 100,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 1,
+      "vehicleCount": 1,
+      "vehicleCap": 1
+    },
+    "route": [
+      "WH",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 0.34,
+      "rawDelivered": 0,
+      "rawLostWarehouse": 1,
+      "rawLostTransit": 0,
+      "rawConsumed": 0.34,
+      "avgTime": 0.34,
+      "avgDelivered": 0,
+      "avgLostWarehouse": 1,
+      "avgLostTransit": 0,
+      "avgConsumed": 0.34,
+      "successCount": 0,
+      "failCount": 10
+    }
+  },
+  {
+    "timestamp": "2025-05-02T15:07:10.677Z",
+    "params": {
+      "speed": 1,
+      "attackRisk": 100,
+      "warehouseLoss": 100,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 1,
+      "vehicleCount": 1,
+      "vehicleCap": 1
+    },
+    "route": [
+      "WH",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 7.13,
+      "rawDelivered": 0,
+      "rawLostWarehouse": 1,
+      "rawLostTransit": 0,
+      "rawConsumed": 7.13,
+      "avgTime": 7.13,
+      "avgDelivered": 0,
+      "avgLostWarehouse": 1,
+      "avgLostTransit": 0,
+      "avgConsumed": 7.13,
+      "successCount": 0,
+      "failCount": 10,
+      "events": [
+        "#1: time=7.13, del=0, whLost=1, trLost=0, cons=7.13"
+      ]
+    }
+  }
+]
