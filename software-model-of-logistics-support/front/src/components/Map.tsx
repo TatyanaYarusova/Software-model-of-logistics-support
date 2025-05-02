@@ -30,6 +30,8 @@ interface MapProps {
     onEndChange: (val: [number, number]) => void;
     onWaypointChange: (val: [number, number][]) => void;
     routePolyline: [number, number][];
+    routeIds: string[];
+    routeNodesPos: [number, number][];
 }
 
 export default function Map({
@@ -40,6 +42,8 @@ export default function Map({
                                 onEndChange,
                                 onWaypointChange,
                                 routePolyline,
+                                routeIds,
+                                routeNodesPos,
                             }: MapProps) {
     const [localStart, setLocalStart] = useState(start);
     const [localEnd, setLocalEnd] = useState(end);
@@ -52,9 +56,7 @@ export default function Map({
     function ResizeMap() {
         const map = useMap();
         useEffect(() => {
-            setTimeout(() => {
-                map.invalidateSize();
-            }, 100);
+            setTimeout(() => map.invalidateSize(), 100);
         }, []);
         return null;
     }
@@ -70,14 +72,30 @@ export default function Map({
                     setLocalEnd(latlng);
                     onEndChange(latlng);
                 } else {
-                    const updated = [...localWaypoints, latlng];
-                    setLocalWaypoints(updated);
-                    onWaypointChange(updated);
+                    const upd = [...localWaypoints, latlng];
+                    setLocalWaypoints(upd);
+                    onWaypointChange(upd);
                 }
             },
         });
         return null;
     }
+
+    const createNumberedIcon = (n: number) =>
+        new L.DivIcon({
+            html: `<div style="
+        background:#3880ff;
+        color:white;
+        width:24px;height:24px;
+        line-height:24px;
+        text-align:center;
+        border-radius:50%;
+        font-weight:bold;
+      ">${n}</div>`,
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 12],
+        });
 
     return (
         <MapContainer
@@ -87,15 +105,31 @@ export default function Map({
         >
             <ResizeMap />
             <ClickHandler />
+
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
             {localStart && <Marker position={localStart} />}
             {localEnd && <Marker position={localEnd} />}
-            {localWaypoints.map((pt, idx) => (
-                <Marker key={idx} position={pt} />
+            {localWaypoints.map((pt, i) => (
+                <Marker key={`wp-${i}`} position={pt} />
             ))}
+
             {routePolyline.length > 1 && (
-                <Polyline positions={routePolyline} />
+                <Polyline positions={routePolyline} color="blue" />
             )}
+
+            {routeIds.map((id, idx) => {
+                const pos = routeNodesPos[idx];
+                if (!pos) return null;
+                return (
+                    <Marker
+                        key={id}
+                        position={pos}
+                        icon={createNumberedIcon(idx + 1)}
+                        title={id}
+                    />
+                );
+            })}
         </MapContainer>
     );
 }

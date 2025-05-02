@@ -1,12 +1,13 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import {useState} from "react";
+import {useRouter} from "next/navigation";
 
-const Map = dynamic(() => import("@/components/Map"), { ssr: false });
+const Map = dynamic(() => import("@/components/Map"), {ssr: false});
 
 export default function MainPage() {
+
     const router = useRouter();
 
     const [start, setStart] = useState<[number, number] | null>(null);
@@ -22,13 +23,8 @@ export default function MainPage() {
     const [experimentsCount, setExperimentsCount] = useState<number>(10);
 
     const [routePolyline, setRoutePolyline] = useState<[number, number][]>([]);
-
-    const handleWaypointChange = (updated: [number, number][]) => setWaypoints(updated);
-    const handleRemoveWaypoint = (i: number) => {
-        const upd = [...waypoints];
-        upd.splice(i, 1);
-        setWaypoints(upd);
-    };
+    const [routeIds, setRouteIds] = useState<string[]>([]);
+    const [routeNodesPos, setRouteNodesPos] = useState<[number, number][]>([]);
 
     const handleReset = () => {
         setStart(null);
@@ -42,6 +38,14 @@ export default function MainPage() {
         setConsumptionRate(undefined);
         setExperimentsCount(10);
         setRoutePolyline([]);
+        setRouteIds([]);
+        setRouteNodesPos([]);
+    };
+
+    const handleRemoveWaypoint = (i: number) => {
+        const w = [...waypoints];
+        w.splice(i, 1);
+        setWaypoints(w);
     };
 
     const handleSimulate = async () => {
@@ -49,64 +53,108 @@ export default function MainPage() {
             !start ||
             !end ||
             speed == null ||
-            transport == null ||
             product == null ||
             attackRisk == null ||
             warehouseLoss == null ||
             consumptionRate == null ||
             experimentsCount == null
         ) {
-            alert(
-                "Заполните все поля:\n" +
-                "• Начальную и конечную точку\n" +
-                "• Скорость, транспорт, товар\n" +
-                "• Риск атаки, потери на складе\n" +
-                "• Скорость расхода\n" +
-                "• Количество экспериментов"
-            );
+            alert("Заполните все поля перед симуляцией");
             return;
         }
 
-        try {
-            const res = await fetch("/api/simulate", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    start,
-                    end,
-                    waypoints,
-                    speed,
-                    transport,
-                    attackRisk,
-                    warehouseLoss,
-                    consumptionRate,
-                    product,
-                    experimentsCount,
-                }),
-            });
-            const result = await res.json();
-            setRoutePolyline(result.routePolyline);
+        const customers = [
+            { id: "END", lat: end[0], lng: end[1], demand: 1 },
+            ...waypoints.map((wp, i) => ({
+                id: `WP${i}`,
+                lat: wp[0],
+                lng: wp[1],
+                demand: 1,
+            })),
+        ];
 
-            alert(
-                `Экспериментов: ${result.experimentsCount}\n\n` +
-                `Первый прогон:\n` +
-                `  Время: ${result.rawTime} ч\n` +
-                `  Доставлено: ${result.rawDelivered}\n` +
-                `  Потеряно на складе: ${result.rawLostWarehouse}\n` +
-                `  Уничтожено в пути: ${result.rawLostTransit}\n` +
-                `  Израсходовано: ${result.rawConsumed}\n\n` +
-                `Среднее по ${result.experimentsCount}:\n` +
-                `  ⌀ Время: ${result.avgTime} ч\n` +
-                `  ⌀ Доставлено: ${result.avgDelivered}\n` +
-                `  ⌀ Потеряно на складе: ${result.avgLostWarehouse}\n` +
-                `  ⌀ Уничтожено в пути: ${result.avgLostTransit}\n` +
-                `  ⌀ Израсходовано: ${result.avgConsumed}\n\n`
-            );
-        } catch (e) {
-            console.error(e);
-            alert("Ошибка при симуляции");
+        const optRes = await fetch("/api/optimize", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                warehouses: [
+                    {
+                        id: "WH",
+                        lat: start[0],
+                        lng: start[1],
+                        stock: product,
+                        lossProb: warehouseLoss / 100,
+                    },
+                ],
+                customers,
+                vehicleCount: 1,
+                vehicleCap: customers.length + 1,
+                alpha: 1,
+                beta: 1,
+            }),
+        });
+        if (!optRes.ok) {
+            alert(`Ошибка оптимизации: ${await optRes.text()}`);
+            return;
         }
-    };
+        const { routes } = await optRes.json();
+        const fullRoute = routes[0]; // [WH, END, WP0, …, WH]
+
+        const visitOrder = fullRoute.nodes.slice(0, -1);
+        setRouteIds(visitOrder.map((n) => n.id));
+        setRouteNodesPos(
+            visitOrder.map((n) => [n.lat, n.lng] as [number, number])
+        );
+
+        const coordString = visitOrder
+            .map((n) => `${n.lng},${n.lat}`)
+            .join(";");
+        const osrmRes = await fetch(
+            `https://router.project-osrm.org/route/v1/driving/${coordString}?overview=full&geometries=geojson`
+        );
+        const osrmData = await osrmRes.json();
+        if (osrmData.code !== "Ok") {
+            alert("Ошибка получения полилинии у OSRM");
+            return;
+        }
+        const geo = osrmData.routes[0].geometry.coordinates.map(
+            (c: [number, number]) => [c[1], c[0]] as [number, number]
+        );
+        setRoutePolyline(geo);
+
+        const simRes = await fetch("/api/simulate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                optimizedRoutes: [{ nodes: fullRoute.nodes, load: fullRoute.load }],
+                speed,
+                attackRisk,
+                warehouseLoss,
+                consumptionRate,
+                experimentsCount,
+            }),
+        });
+        if (!simRes.ok) {
+            alert(`Ошибка симуляции: ${await simRes.text()}`);
+            return;
+        }
+        const result = await simRes.json();
+
+        const log = Array.isArray(result.events)
+            ? result.events.join("\n")
+            : result.events;
+        alert(
+            `Экспериментов: ${result.experimentsCount}\n\n` +
+            `Маршрут:\n${visitOrder
+                .map((n, i) => `${i + 1}: ${n.id}`)
+                .join(" → ")}\n\n` +
+            `Первый: time=${result.rawTime}, del=${result.rawDelivered}, ` +
+            `whLost=${result.rawLostWarehouse}, trLost=${result.rawLostTransit}, cons=${result.rawConsumed}\n` +
+            `Среднее: time=${result.avgTime}, del=${result.avgDelivered}, ` +
+            `whLost=${result.avgLostWarehouse}, trLost=${result.avgLostTransit}, cons=${result.avgConsumed}\n\n` +
+            `Лог первого:\n${log}`
+        );
+    }
 
     return (
         <div className="flex flex-col h-screen w-full">
@@ -120,7 +168,6 @@ export default function MainPage() {
             </div>
             <div className="flex flex-grow">
                 <div className="w-1/4 bg-gray-200 p-4 flex flex-col gap-2 overflow-y-auto">
-                    {/* Выбор точек */}
                     <label className="font-semibold">Начальная точка (клик на карте)</label>
                     <input
                         type="text"
@@ -233,8 +280,10 @@ export default function MainPage() {
                         waypoints={waypoints}
                         onStartChange={setStart}
                         onEndChange={setEnd}
-                        onWaypointChange={handleWaypointChange}
+                        onWaypointChange={setWaypoints}
                         routePolyline={routePolyline}
+                        routeIds={routeIds}
+                        routeNodesPos={routeNodesPos}
                     />
                 </div>
             </div>
