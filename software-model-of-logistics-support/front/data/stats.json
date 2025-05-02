@@ -1,0 +1,734 @@
+[
+  {
+    "timestamp": "2025-05-02T13:09:21.031Z",
+    "params": {
+      "speed": 1,
+      "attackRisk": 1,
+      "warehouseLoss": 1,
+      "consumptionRate": 0,
+      "experimentsCount": 10,
+      "product": 1
+    },
+    "routeSummary": [
+      "WH",
+      "WP0",
+      "END",
+      "WP1",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 3.45,
+      "rawDelivered": 1,
+      "rawLostWarehouse": 0,
+      "rawLostTransit": 0,
+      "rawConsumed": 0,
+      "avgTime": 3.45,
+      "avgDelivered": 1,
+      "avgLostWarehouse": 0,
+      "avgLostTransit": 0,
+      "avgConsumed": 0,
+      "events": [
+        "#1: time=3.45, del=1, whLost=0, trLost=0, cons=0"
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-05-02T13:12:59.072Z",
+    "params": {
+      "speed": 1,
+      "attackRisk": 1,
+      "warehouseLoss": 1,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 1,
+      "vehicleCount": 1,
+      "vehicleCap": 1
+    },
+    "routeSummary": [
+      "WH",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 2.51,
+      "rawDelivered": 1,
+      "rawLostWarehouse": 0,
+      "rawLostTransit": 0,
+      "rawConsumed": 2.51,
+      "avgTime": 2.51,
+      "avgDelivered": 1,
+      "avgLostWarehouse": 0,
+      "avgLostTransit": 0,
+      "avgConsumed": 2.51,
+      "events": [
+        "#1: time=2.51, del=1, whLost=0, trLost=0, cons=2.51"
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-05-02T13:21:25.827Z",
+    "params": {
+      "speed": 1,
+      "attackRisk": 100,
+      "warehouseLoss": 100,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 1,
+      "vehicleCount": 1,
+      "vehicleCap": 1
+    },
+    "routeSummary": [
+      "WH",
+      "WP0",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 2.76,
+      "rawDelivered": 0,
+      "rawLostWarehouse": 1,
+      "rawLostTransit": 0,
+      "rawConsumed": 2.76,
+      "avgTime": 2.76,
+      "avgDelivered": 0,
+      "avgLostWarehouse": 1,
+      "avgLostTransit": 0,
+      "avgConsumed": 2.76,
+      "events": [
+        "#1: time=2.76, del=0, whLost=1, trLost=0, cons=2.76"
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-05-02T15:03:31.893Z",
+    "params": {
+      "speed": 13,
+      "attackRisk": 100,
+      "warehouseLoss": 100,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 1,
+      "vehicleCount": 1,
+      "vehicleCap": 1
+    },
+    "route": [
+      "WH",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 0.34,
+      "rawDelivered": 0,
+      "rawLostWarehouse": 1,
+      "rawLostTransit": 0,
+      "rawConsumed": 0.34,
+      "avgTime": 0.34,
+      "avgDelivered": 0,
+      "avgLostWarehouse": 1,
+      "avgLostTransit": 0,
+      "avgConsumed": 0.34,
+      "successCount": 0,
+      "failCount": 10
+    }
+  },
+  {
+    "timestamp": "2025-05-02T15:07:10.677Z",
+    "params": {
+      "speed": 1,
+      "attackRisk": 100,
+      "warehouseLoss": 100,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 1,
+      "vehicleCount": 1,
+      "vehicleCap": 1
+    },
+    "route": [
+      "WH",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 7.13,
+      "rawDelivered": 0,
+      "rawLostWarehouse": 1,
+      "rawLostTransit": 0,
+      "rawConsumed": 7.13,
+      "avgTime": 7.13,
+      "avgDelivered": 0,
+      "avgLostWarehouse": 1,
+      "avgLostTransit": 0,
+      "avgConsumed": 7.13,
+      "successCount": 0,
+      "failCount": 10,
+      "events": [
+        "#1: time=7.13, del=0, whLost=1, trLost=0, cons=7.13"
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-05-02T15:32:45.869Z",
+    "params": {
+      "speed": 1,
+      "attackRisk": 100,
+      "warehouseLoss": 100,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 1,
+      "vehicleCount": 1,
+      "vehicleCap": 1
+    },
+    "route": [
+      "WH",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 5.77,
+      "rawDelivered": 0,
+      "rawLostWarehouse": 1,
+      "rawLostTransit": 0,
+      "rawConsumed": 5.77,
+      "avgTime": 5.77,
+      "avgDelivered": 0,
+      "avgLostWarehouse": 1,
+      "avgLostTransit": 0,
+      "avgConsumed": 5.77,
+      "successCount": 0,
+      "failCount": 10,
+      "events": [
+        "#1: time=5.77, del=0, whLost=1, trLost=0, cons=5.77"
+      ],
+      "simulationStatus": "Неуспешная симуляция",
+      "failureReason": "Потери на складе превысили допустимый уровень"
+    },
+    "experimentResults": [
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-02T15:35:23.080Z",
+    "params": {
+      "speed": 1,
+      "attackRisk": 1,
+      "warehouseLoss": 1,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 1,
+      "vehicleCount": 1,
+      "vehicleCap": 1
+    },
+    "route": [
+      "WH",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 2.55,
+      "rawDelivered": 1,
+      "rawLostWarehouse": 0,
+      "rawLostTransit": 0,
+      "rawConsumed": 2.55,
+      "avgTime": 2.55,
+      "avgDelivered": 1,
+      "avgLostWarehouse": 0,
+      "avgLostTransit": 0,
+      "avgConsumed": 2.55,
+      "successCount": 10,
+      "failCount": 0,
+      "events": [
+        "#1: time=2.55, del=1, whLost=0, trLost=0, cons=2.55"
+      ],
+      "simulationStatus": "Успешная симуляция",
+      "failureReason": null
+    },
+    "experimentResults": [
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-02T15:35:41.238Z",
+    "params": {
+      "speed": 1,
+      "attackRisk": 100,
+      "warehouseLoss": 100,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 1,
+      "vehicleCount": 1,
+      "vehicleCap": 1
+    },
+    "route": [
+      "WH",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 6.02,
+      "rawDelivered": 0,
+      "rawLostWarehouse": 1,
+      "rawLostTransit": 0,
+      "rawConsumed": 6.02,
+      "avgTime": 6.02,
+      "avgDelivered": 0,
+      "avgLostWarehouse": 1,
+      "avgLostTransit": 0,
+      "avgConsumed": 6.02,
+      "successCount": 0,
+      "failCount": 10,
+      "events": [
+        "#1: time=6.02, del=0, whLost=1, trLost=0, cons=6.02"
+      ],
+      "simulationStatus": "Неуспешная симуляция",
+      "failureReason": "Потери на складе превысили допустимый уровень"
+    },
+    "experimentResults": [
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-02T15:36:03.117Z",
+    "params": {
+      "speed": 1,
+      "attackRisk": 1,
+      "warehouseLoss": 1,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 1,
+      "vehicleCount": 1,
+      "vehicleCap": 1
+    },
+    "route": [
+      "WH",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 6.06,
+      "rawDelivered": 1,
+      "rawLostWarehouse": 0,
+      "rawLostTransit": 0,
+      "rawConsumed": 6.06,
+      "avgTime": 6.06,
+      "avgDelivered": 1,
+      "avgLostWarehouse": 0,
+      "avgLostTransit": 0,
+      "avgConsumed": 6.06,
+      "successCount": 10,
+      "failCount": 0,
+      "events": [
+        "#1: time=6.06, del=1, whLost=0, trLost=0, cons=6.06"
+      ],
+      "simulationStatus": "Успешная симуляция",
+      "failureReason": null
+    },
+    "experimentResults": [
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      },
+      {
+        "success": true,
+        "reason": null
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-02T15:36:17.849Z",
+    "params": {
+      "speed": 1,
+      "attackRisk": 100,
+      "warehouseLoss": 100,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 1,
+      "vehicleCount": 1,
+      "vehicleCap": 1
+    },
+    "route": [
+      "WH",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 5.25,
+      "rawDelivered": 0,
+      "rawLostWarehouse": 1,
+      "rawLostTransit": 0,
+      "rawConsumed": 5.25,
+      "avgTime": 5.25,
+      "avgDelivered": 0,
+      "avgLostWarehouse": 1,
+      "avgLostTransit": 0,
+      "avgConsumed": 5.25,
+      "successCount": 0,
+      "failCount": 10,
+      "events": [
+        "#1: time=5.25, del=0, whLost=1, trLost=0, cons=5.25"
+      ],
+      "simulationStatus": "Неуспешная симуляция",
+      "failureReason": "Потери на складе превысили допустимый уровень"
+    },
+    "experimentResults": [
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-02T15:39:00.573Z",
+    "params": {
+      "speed": 1,
+      "attackRisk": 100,
+      "warehouseLoss": 100,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 1,
+      "vehicleCount": 1,
+      "vehicleCap": 1
+    },
+    "route": [
+      "WH",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 5.17,
+      "rawDelivered": 0,
+      "rawLostWarehouse": 1,
+      "rawLostTransit": 0,
+      "rawConsumed": 5.17,
+      "avgTime": 5.17,
+      "avgDelivered": 0,
+      "avgLostWarehouse": 1,
+      "avgLostTransit": 0,
+      "avgConsumed": 5.17,
+      "successCount": 0,
+      "failCount": 10,
+      "events": [
+        "#1: time=5.17, del=0, whLost=1, trLost=0, cons=5.17"
+      ],
+      "simulationStatus": "Неуспешная симуляция",
+      "failureReason": "Потери на складе превысили допустимый уровень"
+    },
+    "experimentResults": [
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-02T15:42:49.484Z",
+    "params": {
+      "speed": 1,
+      "attackRisk": 100,
+      "warehouseLoss": 100,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 1,
+      "vehicleCount": 1,
+      "vehicleCap": 1
+    },
+    "route": [
+      "WH",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 6.09,
+      "rawDelivered": 0,
+      "rawLostWarehouse": 1,
+      "rawLostTransit": 0,
+      "rawConsumed": 6.09,
+      "avgTime": 6.09,
+      "avgDelivered": 0,
+      "avgLostWarehouse": 1,
+      "avgLostTransit": 0,
+      "avgConsumed": 6.09,
+      "successCount": 0,
+      "failCount": 10,
+      "events": [
+        "#1: time=6.09, del=0, whLost=1, trLost=0, cons=6.09"
+      ],
+      "simulationStatus": "Неуспешная симуляция",
+      "failureReason": "Потери на складе превысили допустимый уровень"
+    },
+    "experimentResults": [
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      },
+      {
+        "success": false,
+        "reason": "Потери на складе превысили допустимый уровень"
+      }
+    ]
+  }
+]

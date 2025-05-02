@@ -121,11 +121,13 @@ export default function Map({
             {routeIds.map((id, idx) => {
                 const pos = routeNodesPos[idx];
                 if (!pos) return null;
+                const isEnd = idx === routeIds.length - 1;
+                const displayNum = (idx === 0 || isEnd) ? 1 : idx + 1;
                 return (
                     <Marker
-                        key={id}
+                        key={`num-${idx}`}
                         position={pos}
-                        icon={createNumberedIcon(idx + 1)}
+                        icon={createNumberedIcon(displayNum)}
                         title={id}
                     />
                 );

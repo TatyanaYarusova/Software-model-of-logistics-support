@@ -43,9 +43,9 @@ export default function MainPage() {
     };
 
     const handleRemoveWaypoint = (i: number) => {
-        const w = [...waypoints];
-        w.splice(i, 1);
-        setWaypoints(w);
+        const upd = [...waypoints];
+        upd.splice(i, 1);
+        setWaypoints(upd);
     };
 
     const handleSimulate = async () => {
@@ -53,6 +53,7 @@ export default function MainPage() {
             !start ||
             !end ||
             speed == null ||
+            transport == null ||
             product == null ||
             attackRisk == null ||
             warehouseLoss == null ||
@@ -98,9 +99,9 @@ export default function MainPage() {
             return;
         }
         const { routes } = await optRes.json();
-        const fullRoute = routes[0]; // [WH, END, WP0, …, WH]
+        const fullRoute = routes[0];
 
-        const visitOrder = fullRoute.nodes.slice(0, -1);
+        const visitOrder = fullRoute.nodes;
         setRouteIds(visitOrder.map((n) => n.id));
         setRouteNodesPos(
             visitOrder.map((n) => [n.lat, n.lng] as [number, number])
@@ -114,7 +115,7 @@ export default function MainPage() {
         );
         const osrmData = await osrmRes.json();
         if (osrmData.code !== "Ok") {
-            alert("Ошибка получения полилинии у OSRM");
+            alert("OSRM error");
             return;
         }
         const geo = osrmData.routes[0].geometry.coordinates.map(
@@ -132,6 +133,9 @@ export default function MainPage() {
                 warehouseLoss,
                 consumptionRate,
                 experimentsCount,
+                product,
+                vehicleCount: transport,
+                vehicleCap: transport,
             }),
         });
         if (!simRes.ok) {
@@ -140,19 +144,34 @@ export default function MainPage() {
         }
         const result = await simRes.json();
 
-        const log = Array.isArray(result.events)
-            ? result.events.join("\n")
-            : result.events;
+        const routeStr = visitOrder.map((n, i) => `${i + 1}: ${n.id}`).join(" → ");
+
+        const firstRun = [
+            `Время: ${result.rawTime} ч`,
+            `Доставлено: ${result.rawDelivered} шт.`,
+            `Потеряно на складе: ${result.rawLostWarehouse} шт.`,
+            `Потеряно в пути: ${result.rawLostTransit} шт.`,
+            `Израсходовано: ${result.rawConsumed} шт.`,
+        ].join("\n  ");
+
+        const avgRun = [
+            `Время: ${result.avgTime} ч`,
+            `Доставлено: ${result.avgDelivered} шт.`,
+            `Потеряно на складе: ${result.avgLostWarehouse} шт.`,
+            `Потеряно в пути: ${result.avgLostTransit} шт.`,
+            `Израсходовано: ${result.avgConsumed} шт.`,
+        ].join("\n  ");
+
+        const simulationStatus = result.simulationStatus;
+        const failureReason = result.failureReason;
+
         alert(
-            `Экспериментов: ${result.experimentsCount}\n\n` +
-            `Маршрут:\n${visitOrder
-                .map((n, i) => `${i + 1}: ${n.id}`)
-                .join(" → ")}\n\n` +
-            `Первый: time=${result.rawTime}, del=${result.rawDelivered}, ` +
-            `whLost=${result.rawLostWarehouse}, trLost=${result.rawLostTransit}, cons=${result.rawConsumed}\n` +
-            `Среднее: time=${result.avgTime}, del=${result.avgDelivered}, ` +
-            `whLost=${result.avgLostWarehouse}, trLost=${result.avgLostTransit}, cons=${result.avgConsumed}\n\n` +
-            `Лог первого:\n${log}`
+            `📊 Экспериментов: ${result.experimentsCount}\n\n` +
+            `📍 Маршрут:\n  ${routeStr}\n\n` +
+            `▶ Результаты первого прогона:\n  ${firstRun}\n\n` +
+            `∅ Средние по ${result.experimentsCount} прогонкам:\n  ${avgRun}\n\n` +
+            `✅ Статус симуляции: ${simulationStatus}\n` +
+            (failureReason ? `❌ Причина неуспеха: ${failureReason}\n` : "")
         );
     }
 
