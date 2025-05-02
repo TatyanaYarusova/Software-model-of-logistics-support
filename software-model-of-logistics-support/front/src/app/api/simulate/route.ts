@@ -1,190 +1,72 @@
 import { NextRequest, NextResponse } from "next/server";
-import { promises as fs } from "fs";
-import path from "path";
-import { Route as OptRoute } from "@/util/routeOptimizer";
+import { Simulator, SimResult } from "@/util/simulate/Simulator";
+import { StatsSaver }    from "@/util/stats/StatSaver";
+import { Route as OptRoute } from "@/util/optimize/RouteOptimizer";
 
 interface SimReq {
     optimizedRoutes: OptRoute[];
-    speed: number;
-    attackRisk: number;
-    warehouseLoss: number;
-    consumptionRate: number;
-    experimentsCount: number;
-    product: number;
-    vehicleCount: number;
-    vehicleCap: number;
-}
-
-function haversine([lat1, lon1]: [number, number], [lat2, lon2]: [number, number]) {
-    const toRad = (d: number) => (d * Math.PI) / 180;
-    const R = 6371;
-    const dLat = toRad(lat2 - lat1);
-    const dLon = toRad(lon2 - lon1);
-    const a =
-        Math.sin(dLat / 2) ** 2 +
-        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
-    return 2 * R * Math.asin(Math.sqrt(a));
-}
-
-type Event = { time: number; fromIdx: number; toIdx: number; };
-class EventQueue {
-    private heap: Event[] = [];
-    push(e: Event) {
-        this.heap.push(e);
-        this.heap.sort((a, b) => a.time - b.time);
-    }
-    pop(): Event | undefined {
-        return this.heap.shift();
-    }
-    isEmpty(): boolean {
-        return this.heap.length === 0;
-    }
-}
-
-function simulateOne(
-    route: OptRoute,
-    speed: number,
-    attackRisk: number,
-    warehouseLoss: number,
-    consumptionRate: number,
-    initialStock: number
-) {
-    const q = new EventQueue();
-    let currentTime = 0;
-    let delivered = 0,
-        lostWarehouse = 0,
-        lostTransit = 0,
-        consumed = 0;
-    let stock = initialStock;
-
-    for (let i = 0; i < route.nodes.length - 1; i++) {
-        const from = route.nodes[i];
-        const to   = route.nodes[i + 1];
-        const dist = haversine([from.lat, from.lng], [to.lat, to.lng]);
-        const tseg = dist / speed;
-        q.push({ time: currentTime + tseg, fromIdx: i, toIdx: i + 1 });
-        currentTime += tseg;
-    }
-
-    currentTime = 0;
-
-    while (!q.isEmpty() && stock > 0) {
-        const e = q.pop()!;
-        const dt = e.time - currentTime;
-        consumed += consumptionRate * dt;
-        currentTime = e.time;
-        stock--;
-        const r = Math.random() * 100;
-        if (r < warehouseLoss) {
-            lostWarehouse++;
-        } else if (r < warehouseLoss + attackRisk) {
-            lostTransit++;
-        } else {
-            delivered++;
-        }
-    }
-
-    return {
-        time: Number(currentTime.toFixed(2)),
-        delivered,
-        lostWarehouse,
-        lostTransit,
-        consumed: Number(consumed.toFixed(2))
-    };
-}
-
-function determineSimulationStatus(result: ReturnType<typeof simulateOne>) {
-    if (result.delivered > 0) {
-        return { success: true, reason: null };
-    }
-    if (result.lostWarehouse > 0) {
-        return { success: false, reason: "Потери на складе превысили допустимый уровень" };
-    }
-    if (result.lostTransit > 0) {
-        return { success: false, reason: "Потери в пути превысили допустимый уровень" };
-    }
-    return { success: false, reason: "Не удалось доставить товар по неизвестной причине" };
-}
-
-async function saveStats(entry: any) {
-    const file = path.join(process.cwd(), "data", "stats.json");
-    let arr: any[] = [];
-    try {
-        arr = JSON.parse(await fs.readFile(file, "utf8"));
-    } catch {
-        arr = [];
-    }
-    arr.push(entry);
-    await fs.writeFile(file, JSON.stringify(arr, null, 2), "utf8");
+    speed: number; attackRisk: number; warehouseLoss: number;
+    consumptionRate: number; experimentsCount: number;
+    product: number; vehicleCount: number; vehicleCap: number;
 }
 
 export async function POST(req: NextRequest) {
     try {
         const body = (await req.json()) as SimReq;
         const {
-            optimizedRoutes,
-            speed,
-            attackRisk,
-            warehouseLoss,
-            consumptionRate,
-            experimentsCount,
-            product,
-            vehicleCount,
-            vehicleCap
+            optimizedRoutes, speed, attackRisk, warehouseLoss,
+            consumptionRate, experimentsCount, product,
+            vehicleCount, vehicleCap
         } = body;
 
-        if (!Array.isArray(optimizedRoutes) || optimizedRoutes.length === 0) {
-            return NextResponse.json({ error: "optimizedRoutes должен быть непустым массивом" }, { status: 400 });
+        // валидация
+        if (!optimizedRoutes?.length) {
+            return NextResponse.json({ error: "Нужен маршрут" }, { status: 400 });
         }
         if (product <= 0) {
-            return NextResponse.json({ error: "product должен быть > 0" }, { status: 400 });
+            return NextResponse.json({ error: "product > 0" }, { status: 400 });
         }
 
-        let sumTime = 0,
-            sumDel = 0,
-            sumLostW = 0,
-            sumLostT = 0,
-            sumCons = 0;
-        let raw = null as null | ReturnType<typeof simulateOne>;
-        let successCount = 0;
-        let failCount = 0;
+        const route = optimizedRoutes[0];
+        let sumTime = 0, sumDel = 0, sumLW = 0, sumLT = 0, sumCons = 0;
+        let raw: SimResult | null = null;
+        let successCount = 0, failCount = 0;
         const events: string[] = [];
-        const experimentResults: { success: boolean; reason: string | null }[] = [];
+        const reasons: (string | null)[] = [];
 
+        // главный цикл экспериментов
         for (let i = 0; i < experimentsCount; i++) {
-            const res = simulateOne(
-                optimizedRoutes[0],
-                speed, attackRisk, warehouseLoss, consumptionRate, product
+            const sim = new Simulator(
+                route,
+                speed, attackRisk, warehouseLoss,
+                consumptionRate, product
             );
-
-            const status = determineSimulationStatus(res);
-            experimentResults.push(status);
+            const one = sim.runOne();
+            const st = Simulator.determineStatus(one);
 
             if (i === 0) {
-                raw = res;
+                raw = one;
                 events.push(
-                    `#1: time=${res.time}, del=${res.delivered}, whLost=${res.lostWarehouse}, trLost=${res.lostTransit}, cons=${res.consumed}`
+                    `#1: time=${one.time}, del=${one.delivered}, whLost=${one.lostWarehouse}, trLost=${one.lostTransit}, cons=${one.consumed}`
                 );
             }
 
-            sumTime    += res.time;
-            sumDel     += res.delivered;
-            sumLostW   += res.lostWarehouse;
-            sumLostT   += res.lostTransit;
-            sumCons    += res.consumed;
+            sumTime  += one.time;
+            sumDel   += one.delivered;
+            sumLW    += one.lostWarehouse;
+            sumLT    += one.lostTransit;
+            sumCons  += one.consumed;
 
-            if (status.success) {
-                successCount++;
-            } else {
-                failCount++;
-            }
+            if (st.success) successCount++;
+            else { failCount++; reasons.push(st.reason); }
         }
 
-        const avgTime = Number((sumTime / experimentsCount).toFixed(2));
-        const avgDel  = Math.round(sumDel / experimentsCount);
-        const avgLostW= Math.round(sumLostW / experimentsCount);
-        const avgLostT= Math.round(sumLostT / experimentsCount);
-        const avgCons = Number((sumCons / experimentsCount).toFixed(2));
+        // вычисляем средние
+        const avgTime    = Number((sumTime / experimentsCount).toFixed(2));
+        const avgDel     = Math.round(sumDel / experimentsCount);
+        const avgLW      = Math.round(sumLW  / experimentsCount);
+        const avgLT      = Math.round(sumLT  / experimentsCount);
+        const avgCons    = Number((sumCons / experimentsCount).toFixed(2));
 
         const result = {
             experimentsCount,
@@ -195,27 +77,27 @@ export async function POST(req: NextRequest) {
             rawConsumed: raw!.consumed,
             avgTime,
             avgDelivered: avgDel,
-            avgLostWarehouse: avgLostW,
-            avgLostTransit: avgLostT,
+            avgLostWarehouse: avgLW,
+            avgLostTransit: avgLT,
             avgConsumed: avgCons,
             successCount,
             failCount,
             events,
-            simulationStatus: successCount > 0 ? "Успешная симуляция" : "Неуспешная симуляция",
-            failureReason: successCount > 0 ? null : experimentResults.find(r => !r.success)?.reason
+            simulationStatus: successCount > 0 ? "Успешная" : "Неуспешная",
+            failureReason: successCount > 0 ? null : reasons[0] ?? null
         };
 
-        await saveStats({
+        // записываем в stats.json
+        await StatsSaver.save({
             timestamp: new Date().toISOString(),
-            params:   { speed, attackRisk, warehouseLoss, consumptionRate, experimentsCount, product, vehicleCount, vehicleCap },
-            route:    optimizedRoutes[0].nodes.map(n => n.id),
-            result,
-            experimentResults
+            params:    { speed, attackRisk, warehouseLoss, consumptionRate, experimentsCount, product, vehicleCount, vehicleCap },
+            route:     route.nodes.map(n => n.id),
+            result
         });
 
         return NextResponse.json(result);
-    } catch (e: any) {
-        console.error(e);
-        return NextResponse.json({ error: e.message }, { status: 500 });
+    } catch (err: any) {
+        console.error(err);
+        return NextResponse.json({ error: err.message }, { status: 500 });
     }
 }
