@@ -27,6 +27,7 @@ interface RawEntry {
         avgLostWarehouse: number;
         avgLostTransit: number;
         avgConsumed: number;
+        failCount?: number;
     };
 }
 
@@ -43,6 +44,7 @@ export async function GET() {
         const routesBuilt = all.length;
         let successfulDeliveries = 0;
         let failedDeliveries = 0;
+        let totalFailures = 0;
         let freeTransport = 0;
         let sumRisk = 0;
         let sumTime = 0;
@@ -52,8 +54,12 @@ export async function GET() {
 
         for (const e of all) {
             successfulDeliveries += e.result.avgDelivered;
-            failedDeliveries     += (e.params.vehicleCount - e.result.avgDelivered);
+            failedDeliveries     += e.result.avgDelivered == 0 ? 1 : 0;
             freeTransport        += (e.params.vehicleCount - e.result.avgDelivered);
+
+            if (e.result.failCount) {
+                totalFailures += e.result.failCount;
+            }
 
             sumRisk += e.params.attackRisk ?? 0;
             sumTime += e.result.avgTime;
@@ -87,6 +93,7 @@ export async function GET() {
             successfulDeliveries,
             failedDeliveries,
             freeTransport,
+            totalFailures,
             averageRiskPercent,
             averageDeliveryTimeMinutes,
             longestRouteKm,

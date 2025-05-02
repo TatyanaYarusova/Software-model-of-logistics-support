@@ -162,11 +162,16 @@ export default function MainPage() {
             `Израсходовано: ${result.avgConsumed} шт.`,
         ].join("\n  ");
 
+        const simulationStatus = result.simulationStatus;
+        const failureReason = result.failureReason;
+
         alert(
             `📊 Экспериментов: ${result.experimentsCount}\n\n` +
             `📍 Маршрут:\n  ${routeStr}\n\n` +
             `▶ Результаты первого прогона:\n  ${firstRun}\n\n` +
-            `∅ Средние по ${result.experimentsCount} прогонкам:\n  ${avgRun}\n\n`
+            `∅ Средние по ${result.experimentsCount} прогонкам:\n  ${avgRun}\n\n` +
+            `✅ Статус симуляции: ${simulationStatus}\n` +
+            (failureReason ? `❌ Причина неуспеха: ${failureReason}\n` : "")
         );
     }
 

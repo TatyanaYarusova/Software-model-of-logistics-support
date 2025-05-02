@@ -73,7 +73,6 @@ function simulateOne(
         const dt = e.time - currentTime;
         consumed += consumptionRate * dt;
         currentTime = e.time;
-        // при прибытии:
         stock--;
         const r = Math.random() * 100;
         if (r < warehouseLoss) {
@@ -92,6 +91,19 @@ function simulateOne(
         lostTransit,
         consumed: Number(consumed.toFixed(2))
     };
+}
+
+function determineSimulationStatus(result: ReturnType<typeof simulateOne>) {
+    if (result.delivered > 0) {
+        return { success: true, reason: null };
+    }
+    if (result.lostWarehouse > 0) {
+        return { success: false, reason: "Потери на складе превысили допустимый уровень" };
+    }
+    if (result.lostTransit > 0) {
+        return { success: false, reason: "Потери в пути превысили допустимый уровень" };
+    }
+    return { success: false, reason: "Не удалось доставить товар по неизвестной причине" };
 }
 
 async function saveStats(entry: any) {
@@ -137,12 +149,16 @@ export async function POST(req: NextRequest) {
         let successCount = 0;
         let failCount = 0;
         const events: string[] = [];
+        const experimentResults: { success: boolean; reason: string | null }[] = [];
 
         for (let i = 0; i < experimentsCount; i++) {
             const res = simulateOne(
                 optimizedRoutes[0],
                 speed, attackRisk, warehouseLoss, consumptionRate, product
             );
+
+            const status = determineSimulationStatus(res);
+            experimentResults.push(status);
 
             if (i === 0) {
                 raw = res;
@@ -157,7 +173,7 @@ export async function POST(req: NextRequest) {
             sumLostT   += res.lostTransit;
             sumCons    += res.consumed;
 
-            if (res.delivered > 0) {
+            if (status.success) {
                 successCount++;
             } else {
                 failCount++;
@@ -184,14 +200,17 @@ export async function POST(req: NextRequest) {
             avgConsumed: avgCons,
             successCount,
             failCount,
-            events
+            events,
+            simulationStatus: successCount > 0 ? "Успешная симуляция" : "Неуспешная симуляция",
+            failureReason: successCount > 0 ? null : experimentResults.find(r => !r.success)?.reason
         };
 
         await saveStats({
             timestamp: new Date().toISOString(),
             params:   { speed, attackRisk, warehouseLoss, consumptionRate, experimentsCount, product, vehicleCount, vehicleCap },
             route:    optimizedRoutes[0].nodes.map(n => n.id),
-            result
+            result,
+            experimentResults
         });
 
         return NextResponse.json(result);

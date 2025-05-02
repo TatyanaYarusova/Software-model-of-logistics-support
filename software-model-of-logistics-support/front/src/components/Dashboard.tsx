@@ -84,7 +84,7 @@ export default function DashboardPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                     <StatCard label="Маршрутов построено" value={stats.routesBuilt} />
                     <StatCard label="Успешных доставок" value={stats.successfulDeliveries} color="green" />
-                    <StatCard label="Провалов доставки" value={stats.failCount ?? 0} color="red" />
+                    <StatCard label="Провалов доставки" value={stats.failedDeliveries ?? 0} color="red" />
                     <div className="bg-white p-4 rounded-xl shadow text-center">
                         <div className="text-sm text-gray-500">Последнее моделирование</div>
                         <div className="mt-1 text-gray-700">{lastDate}</div>
