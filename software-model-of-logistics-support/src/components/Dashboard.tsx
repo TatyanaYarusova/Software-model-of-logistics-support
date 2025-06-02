@@ -123,7 +123,7 @@ export default function DashboardPage() {
                             color="yellow"
                         />
                         <div className="grid grid-cols-1 gap-4">
-                            <StatCard label="Среднее время доставки" value={`${stats.averageDeliveryTimeMinutes} мин`} />
+                            <StatCard label="Среднее время доставки" value={`${stats.averageDeliveryTimeMinutes.toFixed(2)} мин`} />
                         </div>
                     </div>
                 </div>
