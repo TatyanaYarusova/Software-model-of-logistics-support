@@ -4,13 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a0ce279-e6b0-489a-957d-63a824aaceb0" name="Changes" comment="add statistics">
+    <list default="true" id="2a0ce279-e6b0-489a-957d-63a824aaceb0" name="Changes" comment="refactoring">
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/jest.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/jest.setup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/tests/unit/api/optimize/route.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/tests/unit/api/simulate/route.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/tests/unit/api/stats/route.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/tests/unit/util/OSRMService.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/tests/unit/util/simulate/EventQueue.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/tests/unit/util/simulate/Haversine.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/tests/unit/util/simulate/Simulator.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/tests/unit/util/stats/StatsAggregator.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/tests/unit/util/stats/StatsLoader.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/tests/unit/util/stats/StatsSaver.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/data/stats.json" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/data/stats.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/api/simulate/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/api/simulate/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/api/stats/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/api/stats/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/components/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/src/components/Dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/software-model-of-logistics-support/front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/software-model-of-logistics-support/front/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +30,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
         <option value="TypeScript File" />
       </list>
     </option>
@@ -27,10 +38,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="front" />
+        <entry key="$PROJECT_DIR$" value="refactoring" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -57,18 +69,27 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Jest.RouteOptimizer (1).executor&quot;: &quot;Run&quot;,
+    &quot;Jest.RouteOptimizer.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.RouteOptimizer.test.js.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.RouteOptimizer.test.ts (1).executor&quot;: &quot;Run&quot;,
+    &quot;Jest.RouteOptimizer.test.ts.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Класс StatsSaver.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;statistics&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;tests&quot;,
     &quot;js.last.introduce.type&quot;: &quot;LET&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/4_course/Диплом&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;D:/4_course/Диплом/repository/software-model-of-logistics-support/front/node_modules/jest&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.build.executor&quot;: &quot;Run&quot;,
     &quot;npm.dev.executor&quot;: &quot;Run&quot;,
     &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;npm.test.executor&quot;: &quot;Run&quot;,
+    &quot;npm.test:watch.executor&quot;: &quot;Run&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;ts.external.directory.path&quot;: &quot;D:\\4_course\\Диплом\\repository\\software-model-of-logistics-support\\front\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -76,21 +97,14 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\4_course\Диплом\repository\software-model-of-logistics-support\front\src\components" />
+      <recent name="D:\4_course\Диплом\repository\software-model-of-logistics-support\front\tests" />
       <recent name="D:\4_course\Диплом\repository\software-model-of-logistics-support\front" />
+      <recent name="D:\4_course\Диплом\repository\software-model-of-logistics-support\tests\unit\util\optimize" />
+      <recent name="D:\4_course\Диплом\repository\software-model-of-logistics-support\front\src\util\stats" />
+      <recent name="D:\4_course\Диплом\repository\software-model-of-logistics-support\front\src\util\optimize" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/software-model-of-logistics-support/front/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/software-model-of-logistics-support/front/package.json" />
       <command value="run" />
@@ -101,11 +115,21 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/software-model-of-logistics-support/front/package.json" />
       <command value="run" />
       <scripts>
-        <script value="start" />
+        <script value="test" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="test:watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/software-model-of-logistics-support/front/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="test:watch" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -114,10 +138,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.dev" />
-        <item itemvalue="npm.start" />
-        <item itemvalue="npm.build" />
-        <item itemvalue="npm.dev" />
-        <item itemvalue="npm.start" />
+        <item itemvalue="npm.test" />
+        <item itemvalue="npm.test:watch" />
       </list>
     </recent_temporary>
   </component>
@@ -142,7 +164,11 @@
       <workItem from="1743611163341" duration="4316000" />
       <workItem from="1744053238902" duration="3441000" />
       <workItem from="1746123056496" duration="8380000" />
-      <workItem from="1746199255205" duration="2584000" />
+      <workItem from="1746218526348" duration="509000" />
+      <workItem from="1746219045994" duration="1321000" />
+      <workItem from="1746354557627" duration="15423000" />
+      <workItem from="1746449656769" duration="1367000" />
+      <workItem from="1746471245358" duration="2463000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <option name="closed" value="true" />
@@ -184,13 +210,13 @@
       <option name="project" value="LOCAL" />
       <updated>1746125674941</updated>
     </task>
-    <task id="LOCAL-00006" summary="add statistics">
+    <task id="LOCAL-00006" summary="refactoring">
       <option name="closed" value="true" />
-      <created>1746198797701</created>
+      <created>1746215246247</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1746198797701</updated>
+      <updated>1746215246247</updated>
     </task>
     <option name="localTasksCounter" value="7" />
     <servers />
@@ -215,7 +241,6 @@
     <MESSAGE value="add params" />
     <MESSAGE value="add draft dashboard" />
     <MESSAGE value="refactoring" />
-    <MESSAGE value="add statistics" />
-    <option name="LAST_COMMIT_MESSAGE" value="add statistics" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
   </component>
 </project>
