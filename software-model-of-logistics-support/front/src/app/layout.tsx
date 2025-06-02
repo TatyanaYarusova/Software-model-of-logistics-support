@@ -2,7 +2,7 @@ import type {Metadata} from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-    title: "Software model of MTO",
+    title: "Software model of logistics",
     description: "A software model for logistics and supply chain management",
 };
 
