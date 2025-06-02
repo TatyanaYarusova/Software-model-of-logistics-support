@@ -1700,5 +1700,120 @@
       "simulationStatus": "Успешная",
       "failureReason": null
     }
+  },
+  {
+    "timestamp": "2025-06-02T18:50:03.293Z",
+    "params": {
+      "speed": 100,
+      "attackRisk": 0,
+      "warehouseLoss": 0,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 100,
+      "vehicleCount": 100,
+      "vehicleCap": 100
+    },
+    "route": [
+      "WH",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 0.07,
+      "rawDelivered": 2,
+      "rawLostWarehouse": 0,
+      "rawLostTransit": 0,
+      "rawConsumed": 0.07,
+      "avgTime": 0.07,
+      "avgDelivered": 2,
+      "avgLostWarehouse": 0,
+      "avgLostTransit": 0,
+      "avgConsumed": 0.07,
+      "successCount": 10,
+      "failCount": 0,
+      "events": [
+        "#1: time=0.07, del=2, whLost=0, trLost=0, cons=0.07"
+      ],
+      "simulationStatus": "Успешная",
+      "failureReason": null
+    }
+  },
+  {
+    "timestamp": "2025-06-02T18:57:10.879Z",
+    "params": {
+      "speed": 100,
+      "attackRisk": 1,
+      "warehouseLoss": 0,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 100,
+      "vehicleCount": 100,
+      "vehicleCap": 100
+    },
+    "route": [
+      "WH",
+      "END",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 0.12,
+      "rawDelivered": 2,
+      "rawLostWarehouse": 0,
+      "rawLostTransit": 0,
+      "rawConsumed": 0.12,
+      "avgTime": 0.12,
+      "avgDelivered": 2,
+      "avgLostWarehouse": 0,
+      "avgLostTransit": 0,
+      "avgConsumed": 0.12,
+      "successCount": 10,
+      "failCount": 0,
+      "events": [
+        "#1: time=0.12, del=2, whLost=0, trLost=0, cons=0.12"
+      ],
+      "simulationStatus": "Успешная",
+      "failureReason": null
+    }
+  },
+  {
+    "timestamp": "2025-06-02T18:59:28.907Z",
+    "params": {
+      "speed": 100,
+      "attackRisk": 0,
+      "warehouseLoss": 0,
+      "consumptionRate": 1,
+      "experimentsCount": 10,
+      "product": 100,
+      "vehicleCount": 100,
+      "vehicleCap": 100
+    },
+    "route": [
+      "WH",
+      "END",
+      "WP0",
+      "WH"
+    ],
+    "result": {
+      "experimentsCount": 10,
+      "rawTime": 0.2,
+      "rawDelivered": 3,
+      "rawLostWarehouse": 0,
+      "rawLostTransit": 0,
+      "rawConsumed": 0.2,
+      "avgTime": 0.2,
+      "avgDelivered": 3,
+      "avgLostWarehouse": 0,
+      "avgLostTransit": 0,
+      "avgConsumed": 0.2,
+      "successCount": 10,
+      "failCount": 0,
+      "events": [
+        "#1: time=0.2, del=3, whLost=0, trLost=0, cons=0.2"
+      ],
+      "simulationStatus": "Успешная",
+      "failureReason": null
+    }
   }
 ]

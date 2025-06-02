@@ -1,6 +1,6 @@
 import { Haversine } from "./haversine";
 import { EventQueue } from "./EventQueue";
-import { Route as OptRoute, Node } from "@/util/optimize/RouteOptimizer";
+import { Route as OptRoute, Node } from "software-model-of-logistics-support/src/util/optimize/RouteOptimizer";
 
 export interface SimResult {
     time: number;
