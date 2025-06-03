@@ -98,9 +98,12 @@ npm run test
 
 ## Дальнейшие направления исследования
 - Расширение функциональности модели и интеграции с внешними сервисами.  
-- Оптимизация алгоритмов моделирования.  
+- Оптимизация алгоритмов моделирования.
+
+### Демонстрация работы модели
+![Demo GIF](demo/demo.gif)
 
 
 ## Ссылки
 - **Репозиторий:** <https://github.com/TatyanaYarusova/Software-model-of-logistics-support.git>  
-- **Демо:** <>
+- **Демо:** <https://github.com/TatyanaYarusova/Software-model-of-logistics-support/blob/main/demo/demo.mp4>
